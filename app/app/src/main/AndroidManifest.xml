@@ -3,7 +3,7 @@
 
     <application
         android:label="StarDo"
-        android:allowBackup="true">
+        android:exported="true">
 
         <activity android:name=".MainActivity">
             <intent-filter>
