@@ -2,10 +2,10 @@
 
     <application
         android:label="StarDo"
-        android:icon="@mipmap/ic_launcher">
+        android:allowBackup="true"
+        android:supportsRtl="true">
 
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
