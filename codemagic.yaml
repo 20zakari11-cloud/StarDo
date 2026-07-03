@@ -5,8 +5,27 @@ workflows:
       java: 17
 
     scripts:
-      - chmod +x gradlew
-      - ./gradlew assembleDebug
+
+      - name: Check files
+        script: ls -la
+
+      - name: Try Gradle wrapper
+        script: |
+          if [ ! -f gradlew ]; then
+            echo "No wrapper found - generating..."
+            gradle wrapper || echo "Gradle not available, skipping"
+          fi
+
+      - name: Make executable
+        script: chmod +x gradlew || true
+
+      - name: Build (wrapper or fallback)
+        script: |
+          if [ -f ./gradlew ]; then
+            ./gradlew assembleDebug
+          else
+            gradle assembleDebug
+          fi
 
     artifacts:
       - app/build/outputs/**/*.apk
